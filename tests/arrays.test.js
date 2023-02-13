@@ -26,4 +26,24 @@ describe('Lodash: chunk', () => {
     })
 })
 
+describe('Lodash: compact', () => {
+    let testArray;
 
+    beforeEach(() => {
+        testArray = [null, 'a', '', 0, 2, 6, true, false, undefined, NaN]
+    })
+
+    test('should be defined', () => {
+        expect(lodash.compact).toBeDefined()
+        expect(lodash.compact).not.toBeUndefined()
+    })
+
+    test('should return array', () => {
+        expect(lodash.compact(testArray)).toBeInstanceOf(Array)
+    })
+
+    test('should return array of truthy values', () => {
+        const result = testArray.filter((val) => !!val)
+        expect(lodash.compact(testArray)).toBe(result)
+    })
+})

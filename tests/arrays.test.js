@@ -108,10 +108,7 @@ describe('Lodash: dropWhile', () => {
     })
 
     test('should drop according to callback', () => {
-        expect(lodash.dropWhile(testArray, (obj) => obj.active)).toBe([
-            { 'user': 'barney', 'active': false },
-            { 'user': 'fred', 'active': false }
-        ])
+        expect(lodash.dropWhile(testArray, (obj) => obj.active)).toBe(testArray)
         expect(lodash.dropWhile(testArray, (obj) => !obj.active)).toBe([
             { 'user': 'pebbles', 'active': true }
         ])
@@ -144,4 +141,29 @@ describe('Lodash: take', () => {
     })
 })
 
+describe('Lodash: filter', () => {
+    let testArray;
 
+    beforeEach(() => {
+        testArray = [1, 2, 3, 4, 5, 6]
+    })
+
+    test('should be defined', () => {
+        expect(lodash.filter).toBeDefined()
+        expect(lodash.filter).not.toBeUndefined()
+    })
+
+    test('should return an array', () => {
+        expect(lodash.filter(testArray)).toBeInstanceOf(Array)
+    })
+
+    test('should not mutate given array', () => {
+        expect(lodash.filter(testArray, (a) => a > 5)).not.toBe(testArray)
+    })
+
+    test('should filter values according to callback', () => {
+        expect(lodash.filter(testArray, (a) => a > 2)).toBe([3, 4, 5, 6])
+        expect(lodash.filter(testArray, (a) => a > 4)).toBe([5, 6])
+        expect(lodash.filter(testArray, (a) => a > 5)).toBe([6])
+    })
+})

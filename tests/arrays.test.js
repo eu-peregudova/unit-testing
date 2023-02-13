@@ -83,3 +83,39 @@ describe('Lodash: drop', () => {
     })
 })
 
+describe('Lodash: dropWhile', () => {
+    let testArray;
+
+    beforeEach(() => {
+        testArray = [
+            { 'user': 'barney', 'active': false },
+            { 'user': 'fred', 'active': false },
+            { 'user': 'pebbles', 'active': true }
+        ]
+    })
+
+    test('should be defined', () => {
+        expect(lodash.dropWhile).toBeDefined()
+        expect(lodash.dropWhile).not.toBeUndefined()
+    })
+
+    test('should return an array', () => {
+        expect(lodash.dropWhile(testArray, () => true)).toBeInstanceOf(Array)
+    })
+
+    test('should drop all while true', () => {
+        expect(lodash.dropWhile(testArray, () => true)).toBe([])
+    })
+
+    test('should drop according to callback', () => {
+        expect(lodash.dropWhile(testArray, (obj) => obj.active)).toBe([
+            { 'user': 'barney', 'active': false },
+            { 'user': 'fred', 'active': false }
+        ])
+        expect(lodash.dropWhile(testArray, (obj) => !obj.active)).toBe([
+            { 'user': 'pebbles', 'active': true }
+        ])
+    })
+})
+
+

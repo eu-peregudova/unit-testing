@@ -118,4 +118,30 @@ describe('Lodash: dropWhile', () => {
     })
 })
 
+describe('Lodash: take', () => {
+    let testArray;
+
+    beforeEach(() => {
+        testArray = [1, 2, 3, 4, 5, 6, 7]
+    })
+
+    test('should be defined', () => {
+        expect(lodash.take).toBeDefined()
+        expect(lodash.take).not.toBeUndefined()
+    })
+
+    test('should return an array', () => {
+        expect(lodash.take(testArray, 0)).toBeInstanceOf(Array)
+    })
+
+    test('should  slice of array with elements taken from the beginning', () => {
+        expect(lodash.take(testArray, 0)).toBe([])
+        expect(lodash.take(testArray, 1)).toBe([1])
+        expect(lodash.take(testArray, 2)).toBe([1, 2])
+        expect(lodash.take(testArray, 3)).toBe([1, 2, 3])
+        expect(lodash.take(testArray, 4)).toBe([1, 2, 3, 4])
+        expect(lodash.take(testArray, 10)).toBe([1, 2, 3, 4, 5, 6, 7])
+    })
+})
+
 

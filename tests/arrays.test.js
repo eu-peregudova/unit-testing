@@ -202,3 +202,41 @@ describe('Lodash: find', () => {
         expect(lodash.find(testArray, (o) => !o.active)).toBe(testArray[1])
     })
 })
+
+describe('Lodash: includes', () => {
+    test('should be defined', () => {
+        expect(lodash.includes).toBeDefined()
+        expect(lodash.includes).not.toBeUndefined()
+    })
+
+    test('should return Boolean', () => {
+        expect(lodash.includes([1, 2, 3], 1)).toBeInstanceOf(Boolean)
+        expect(lodash.includes([1, 2, 3], 5)).toBeInstanceOf(Boolean)
+    })
+
+    test('should accept third parameter (index to search from)', () => {
+        expect(lodash.includes([1, 2, 3], 3, 1)).toBe(true)
+        expect(lodash.includes([1, 2, 3], 1, 1)).toBe(false)
+    })
+
+    test('should work with arrays', () => {
+        expect(lodash.includes([1, 2, 3, 4, 5], 3)).toBe(true)
+        expect(lodash.includes([1, 2, 3, 4, 5], 7)).toBe(false)
+        expect(lodash.includes([1, 'a', 'b', 3, 1], 'a')).toBe(true)
+        expect(lodash.includes(['12345'], 3)).toBe(false)
+    })
+
+    test('should work with strings', () => {
+        expect(lodash.includes('abcde', 'bc')).toBe(true)
+        expect(lodash.includes('hello', 'bc')).toBe(false)
+        expect(lodash.includes('abcde', '')).toBe(false)
+    })
+
+    test('should work with objects', () => {
+        expect(lodash.includes({ 'a': 1, 'b': 2 }, 1)).toBe(true)
+        expect(lodash.includes({ 'a': 1, 'b': 2 }, 'a')).toBe(false)
+        expect(lodash.includes({ 'a': 1, 'b': 2 })).toBe(false)
+    })
+})
+
+

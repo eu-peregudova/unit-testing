@@ -167,3 +167,38 @@ describe('Lodash: filter', () => {
         expect(lodash.filter(testArray, (a) => a > 5)).toBe([6])
     })
 })
+
+describe('Lodash: find', () => {
+    let testArray;
+
+    beforeEach(() => {
+        testArray = [
+            { 'user': 'barney',  'age': 36, 'active': true },
+            { 'user': 'fred',    'age': 40, 'active': false },
+            { 'user': 'pebbles', 'age': 1,  'active': true }
+        ]
+    })
+
+    test('should be defined', () => {
+        expect(lodash.find).toBeDefined()
+        expect(lodash.find).not.toBeUndefined()
+    })
+
+    test('should return undefined if nothing is found', () => {
+        expect(lodash.find([1, 2, 4], (a) => a === 5)).toBeUndefined()
+    })
+
+    test('should return only first find', () => {
+        expect(lodash.find([1, 2, 4], (a) => a < 0)).toBe(1)
+    })
+
+    test('should accept third parameter (index to search from)', () => {
+        expect(lodash.find([1, 2, 4], (a) => a < 0, 1)).toBe(2)
+    })
+
+    test('should work with arrays of objects', () => {
+        expect(lodash.find(testArray, (o) => o.age < 40)).toBe(testArray[0])
+        expect(lodash.find(testArray, (o) => o.active, 1)).toBe(testArray[2])
+        expect(lodash.find(testArray, (o) => !o.active)).toBe(testArray[1])
+    })
+})

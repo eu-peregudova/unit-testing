@@ -201,6 +201,10 @@ describe('Lodash: find', () => {
         expect(lodash.find(testArray, (o) => o.active, 1)).toBe(testArray[2])
         expect(lodash.find(testArray, (o) => !o.active)).toBe(testArray[1])
     })
+
+    test('should work with strings', () => {
+        expect(lodash.find('abcde', (a) => a === 'a')).toBe('a')
+    })
 })
 
 describe('Lodash: includes', () => {
@@ -287,5 +291,3 @@ describe('Lodash: zip', () => {
         expect(lodash.zip(['a', 'b', 'c'], [1, 2], [true, false])).toBe([['a', 1, true], ['b', 2, false], ['c']])
     })
 })
-
-

@@ -239,4 +239,37 @@ describe('Lodash: includes', () => {
     })
 })
 
+describe('Lodash: map', () => {
+    let testArray;
+
+    beforeEach(() => {
+        testArray = [1, 2, 3, 4, 5, 6, 7]
+    })
+
+    test('should be defined', () => {
+        expect(lodash.map).toBeDefined()
+        expect(lodash.map).not.toBeUndefined()
+    })
+
+    test('should return an array', () => {
+        expect(lodash.map([1, 2, 3], (a) => a)).toBeInstanceOf(Array)
+    })
+
+    test('should run callback to all values in array', () => {
+        expect(lodash.map(testArray, (num) => num * 2)).toBe(testArray.map((num) => num * 2))
+        expect(lodash.map(testArray, (num) => Math.sqrt(num))).toBe(testArray.map((num) => Math.sqrt(num)))
+        expect(lodash.map(testArray, (num) => num ** 3)).toBe(testArray.map((num) => num ** 3))
+    })
+
+    test('should work with an array of objects', () => {
+        const arr = [{ 'a': 20 }, { 'b': 40 }]
+        expect(lodash.map(arr, (u) => u / 10)).toBe([2, 4])
+    })
+
+    test('should work with strings', () => {
+        const string = 'abc'
+        expect(lodash.map(string, (a) => `${a}b`)).toBe(['ab', 'bb', 'cb'])
+    })
+})
+
 

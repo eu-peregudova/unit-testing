@@ -272,4 +272,20 @@ describe('Lodash: map', () => {
     })
 })
 
+describe('Lodash: zip', () => {
+    test('should be defined', () => {
+        expect(lodash.zip).toBeDefined()
+        expect(lodash.zip).not.toBeUndefined()
+    })
+
+    test('should return an array', () => {
+        expect(lodash.zip([1], ['a'])).toBeInstanceOf(Array)
+    })
+
+    test('should group objects', () => {
+        expect(lodash.zip(['a', 'b'], [1, 2], [true, false])).toBe([['a', 1, true], ['b', 2, false]])
+        expect(lodash.zip(['a', 'b', 'c'], [1, 2], [true, false])).toBe([['a', 1, true], ['b', 2, false], ['c']])
+    })
+})
+
 

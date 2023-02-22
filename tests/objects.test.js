@@ -98,8 +98,34 @@ describe('Lodash: omitBy', () => {
     })
 })
 
-
-
 // pick
+describe('Lodash: pick', () => {
+    test('should be defined', () => {
+        expect(lodash.pick).toBeDefined()
+        expect(lodash.pick).not.toBeUndefined()
+    })
+
+    test('should return object', () => {
+        expect(lodash.pick()).toBeInstanceOf(Object)
+    })
+
+    test('should create new object composed of the picked object properties', () => {
+        expect(lodash.pick({ 'a': 1, 'b': '2', 'c': 3 }, ['a', 'b']))
+            .toBe({ 'a': 1, 'b': '2'})
+        expect(lodash.pick({ 'a': 1, 'b': '2', 'c': 3 }, ['a', 'c']))
+            .toBe({ 'a': 1, 'c': 3})
+        expect(lodash.pick({ 'a': 1, 'b': 2, 'c': 3 }, []))
+            .toBe({})
+        expect(lodash.pick({ 'a': 1, 'b': 2, 'c': 3 }, ['n']))
+            .toBe({})
+        expect(lodash.pick({ 'a': 1, 'b': 2, 'c': 3 }, 'a'))
+            .toBe({ 'a': 1})
+    })
+})
+
+
+
+
+
 // pickBy
 // toPairs

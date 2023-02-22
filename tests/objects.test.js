@@ -148,6 +148,43 @@ describe('Lodash: pickBy', () => {
     })
 })
 
-
-
 // toPairs
+describe('Lodash: toPairs', () => {
+    test('should be defined', () => {
+        expect(lodash.toPairs).toBeDefined()
+        expect(lodash.toPairs).not.toBeUndefined()
+    })
+
+    test('should return an array', () => {
+        expect(lodash.toPairs({'a': 1})).toBeInstanceOf(Array)
+        expect(lodash.toPairs()).toBeInstanceOf(Array)
+    })
+
+    test('should not deconstruct nested objects', () => {
+        expect(lodash.toPairs({'a': 1, 'b': {'c': 2}}))
+            .toBe([['a', 1],['b', {'c': 2}]])
+    })
+
+    test('should create an array of arrays with [key, value] pairs, ' +
+        'If object is a map or set, its entries are returned.', () => {
+        expect(lodash.toPairs({'a': 1, 'b': 2}))
+            .toBe([['a', 1], ['b', 2]])
+
+        let test = new Set([1, 2, 3])
+        expect(lodash.toPairs(test))
+            .toBe([[1, 1], [2, 2], [3, 3]])
+
+        test = new Map()
+        test.set('a', 1)
+        expect(lodash.toPairs(test))
+            .toBe([['a', 1]])
+
+        test.set({'b': 2}, 3)
+        expect(lodash.toPairs(test))
+            .toBe([['a', 1], [{'b': 2}, 3]])
+
+        test = [1, 2, 3]
+        expect(lodash.toPairs(test))
+            .toBe([['0', 1], ['1', 2], ['2', 3]])
+    })
+})

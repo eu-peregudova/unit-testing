@@ -70,12 +70,36 @@ describe('Lodash: omit', () => {
     test('should not omit nested properties', () => {
         expect(lodash.omit({'a': {'b': [1, 2, 3]}}, ['b'])).toBe({'a': {'b': [1, 2, 3]}})
     })
+})
 
+// omitBy
+describe('Lodash: omitBy', () => {
+    test('should be defined', () => {
+        expect(lodash.omitBy).toBeDefined()
+        expect(lodash.omitBy).not.toBeUndefined()
+    })
+
+    test('should return object', () => {
+        expect(lodash.omitBy({a: 1}, (a) => a)).toBeInstanceOf(Object)
+        expect(lodash.omitBy()).toBeInstanceOf(Object)
+    })
+
+    test('should leave values for which callback doesn\'t return truthy', () => {
+        expect(lodash.omitBy({'a': 1, 'b': '2', 'c': 3}, (a) => typeof(a) === 'number'))
+            .toBe({'b': '2'})
+        expect(lodash.omitBy({'a': 1, 'b': '2', 'c': 3}, (a) => typeof(a) === 'string'))
+            .toBe({'a': 1, 'c': 3})
+        expect(lodash.omitBy({'a': 1, 'b': 2, 'c': 3}, (a) => a > 2))
+            .toBe({'a': 1, 'b': 2})
+        expect(lodash.omitBy({'a': 1, 'b': 2, 'c': 3}, (a) => a < 0))
+            .toBe({'a': 1, 'b': 2, 'c': 3})
+        expect(lodash.omitBy({'a': 1, 'b': 2, 'c': 3}, (a) => a > 0))
+            .toBe({})
+    })
 })
 
 
 
-// omitBy
 // pick
 // pickBy
 // toPairs

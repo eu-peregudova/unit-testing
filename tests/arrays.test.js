@@ -44,7 +44,7 @@ describe('Lodash: compact', () => {
 
     test('should return array of truthy values', () => {
         const result = testArray.filter((val) => !!val)
-        expect(lodash.compact(testArray)).toBe(result)
+        expect(lodash.compact(testArray)).toStrictEqual(result)
     })
 })
 

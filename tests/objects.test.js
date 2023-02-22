@@ -49,9 +49,32 @@ describe('Lodash: merge', () => {
     })
 })
 
-
-
 // omit
+describe('Lodash: omit', () => {
+    test('should be defined', () => {
+        expect(lodash.omit).toBeDefined()
+        expect(lodash.omit).not.toBeUndefined()
+    })
+
+    test('should return object', () => {
+        expect(lodash.omit({'a': 1, 'b': '2', 'c': 3}, ['a', 'c'])).toBeInstanceOf(Object)
+    })
+
+    test('should omit provided properties from object', () => {
+        expect(lodash.omit({'a': 1, 'b': '2', 'c': 3}, ['a', 'c'])).toBe({'b': '2'})
+        expect(lodash.omit({'a': 2, 'b': [1, 2, 3]}, 'b')).toBe({'a': 2})
+        expect(lodash.omit({'a': 2, 'b': [1, 2, 3]}, 'none')).toBe({'a': 2, 'b': [1, 2, 3]})
+
+    })
+
+    test('should not omit nested properties', () => {
+        expect(lodash.omit({'a': {'b': [1, 2, 3]}}, ['b'])).toBe({'a': {'b': [1, 2, 3]}})
+    })
+
+})
+
+
+
 // omitBy
 // pick
 // pickBy

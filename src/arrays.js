@@ -43,9 +43,30 @@ class LodashArray {
         }
         return result;
     }
-    drop() {
 
+    /**
+     * Creates a slice of array with n elements dropped from the beginning.
+     *
+     * @param {Array} [array]
+     * @param {Number} n
+     * @return {Array}
+     *
+     * complexity = O(array.length)
+     */
+    drop(array, n = 1) {
+        if (!n) {
+            return array
+        }
+        if (!array) {
+            return [];
+        }
+        let result = [];
+        for (let i = n; i < array.length; i++) {
+            result[result.length] = array[i]
+        }
+        return result;
     }
+
     dropWhile() {
 
     }

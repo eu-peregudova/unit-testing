@@ -20,9 +20,9 @@ describe('Lodash: chunk', () => {
 
     test(`should an array of elements split into groups the length of size
     If array can't be split evenly, the final chunk will be the remaining elements`, () => {
-        expect(lodash.chunk(testArray, 2)).toBe([['a', 'b'], [1, 2], [6, true]])
-        expect(lodash.chunk(testArray, 3)).toBe([['a', 'b', 1], [2, 6, true]])
-        expect(lodash.chunk(testArray, 4)).toBe([['a', 'b', 1, 2], [6, true]])
+        expect(lodash.chunk(testArray, 2)).toStrictEqual([['a', 'b'], [1, 2], [6, true]])
+        expect(lodash.chunk(testArray, 3)).toStrictEqual([['a', 'b', 1], [2, 6, true]])
+        expect(lodash.chunk(testArray, 4)).toStrictEqual([['a', 'b', 1, 2], [6, true]])
     })
 })
 
@@ -65,21 +65,21 @@ describe('Lodash: drop', () => {
     })
 
     test('default number of dropped elements is 1', () => {
-        expect(lodash.drop(testArray)).toBe([2, 3, 4, 5])
-        expect(lodash.drop(testArray)).toBe(lodash.drop(testArray, 1))
+        expect(lodash.drop(testArray)).toStrictEqual([2, 3, 4, 5])
+        expect(lodash.drop(testArray)).toStrictEqual(lodash.drop(testArray, 1))
     })
 
     test('should return as is if number of dropped elements is 0', () => {
-        expect(lodash.drop(testArray, 0)).toBe([1, 2, 3, 4, 5])
+        expect(lodash.drop(testArray, 0)).toStrictEqual([1, 2, 3, 4, 5])
         expect(lodash.drop(testArray, 0)).toBe(testArray)
     })
 
     test('should creates a slice of array with n elements dropped from the beginning', () => {
-        expect(lodash.drop(testArray, 2)).toBe([3, 4, 5])
-        expect(lodash.drop(testArray, 3)).toBe([4, 5])
-        expect(lodash.drop(testArray, 4)).toBe([5])
-        expect(lodash.drop(testArray, 5)).toBe([])
-        expect(lodash.drop(testArray, 100)).toBe([])
+        expect(lodash.drop(testArray, 2)).toStrictEqual([3, 4, 5])
+        expect(lodash.drop(testArray, 3)).toStrictEqual([4, 5])
+        expect(lodash.drop(testArray, 4)).toStrictEqual([5])
+        expect(lodash.drop(testArray, 5)).toStrictEqual([])
+        expect(lodash.drop(testArray, 100)).toStrictEqual([])
     })
 })
 
@@ -104,12 +104,12 @@ describe('Lodash: dropWhile', () => {
     })
 
     test('should drop all while true', () => {
-        expect(lodash.dropWhile(testArray, () => true)).toBe([])
+        expect(lodash.dropWhile(testArray, () => true)).toStrictEqual([])
     })
 
     test('should drop according to callback', () => {
         expect(lodash.dropWhile(testArray, (obj) => obj.active)).toBe(testArray)
-        expect(lodash.dropWhile(testArray, (obj) => !obj.active)).toBe([
+        expect(lodash.dropWhile(testArray, (obj) => !obj.active)).toStrictEqual([
             { 'user': 'pebbles', 'active': true }
         ])
     })
@@ -132,12 +132,12 @@ describe('Lodash: take', () => {
     })
 
     test('should  slice of array with elements taken from the beginning', () => {
-        expect(lodash.take(testArray, 0)).toBe([])
-        expect(lodash.take(testArray, 1)).toBe([1])
-        expect(lodash.take(testArray, 2)).toBe([1, 2])
-        expect(lodash.take(testArray, 3)).toBe([1, 2, 3])
-        expect(lodash.take(testArray, 4)).toBe([1, 2, 3, 4])
-        expect(lodash.take(testArray, 10)).toBe([1, 2, 3, 4, 5, 6, 7])
+        expect(lodash.take(testArray, 0)).toStrictEqual([])
+        expect(lodash.take(testArray, 1)).toStrictEqual([1])
+        expect(lodash.take(testArray, 2)).toStrictEqual([1, 2])
+        expect(lodash.take(testArray, 3)).toStrictEqual([1, 2, 3])
+        expect(lodash.take(testArray, 4)).toStrictEqual([1, 2, 3, 4])
+        expect(lodash.take(testArray, 10)).toStrictEqual([1, 2, 3, 4, 5, 6, 7])
     })
 })
 
@@ -162,9 +162,9 @@ describe('Lodash: filter', () => {
     })
 
     test('should filter values according to callback', () => {
-        expect(lodash.filter(testArray, (a) => a > 2)).toBe([3, 4, 5, 6])
-        expect(lodash.filter(testArray, (a) => a > 4)).toBe([5, 6])
-        expect(lodash.filter(testArray, (a) => a > 5)).toBe([6])
+        expect(lodash.filter(testArray, (a) => a > 2)).toStrictEqual([3, 4, 5, 6])
+        expect(lodash.filter(testArray, (a) => a > 4)).toStrictEqual([5, 6])
+        expect(lodash.filter(testArray, (a) => a > 5)).toStrictEqual([6])
     })
 })
 
@@ -260,19 +260,19 @@ describe('Lodash: map', () => {
     })
 
     test('should run callback to all values in array', () => {
-        expect(lodash.map(testArray, (num) => num * 2)).toBe(testArray.map((num) => num * 2))
-        expect(lodash.map(testArray, (num) => Math.sqrt(num))).toBe(testArray.map((num) => Math.sqrt(num)))
-        expect(lodash.map(testArray, (num) => num ** 3)).toBe(testArray.map((num) => num ** 3))
+        expect(lodash.map(testArray, (num) => num * 2)).toStrictEqual(testArray.map((num) => num * 2))
+        expect(lodash.map(testArray, (num) => Math.sqrt(num))).toStrictEqual(testArray.map((num) => Math.sqrt(num)))
+        expect(lodash.map(testArray, (num) => num ** 3)).toStrictEqual(testArray.map((num) => num ** 3))
     })
 
     test('should work with an array of objects', () => {
         const arr = [{ 'a': 20 }, { 'b': 40 }]
-        expect(lodash.map(arr, (u) => u / 10)).toBe([2, 4])
+        expect(lodash.map(arr, (u) => u / 10)).toStrictEqual([2, 4])
     })
 
     test('should work with strings', () => {
         const string = 'abc'
-        expect(lodash.map(string, (a) => `${a}b`)).toBe(['ab', 'bb', 'cb'])
+        expect(lodash.map(string, (a) => `${a}b`)).toStrictEqual(['ab', 'bb', 'cb'])
     })
 })
 
@@ -287,7 +287,7 @@ describe('Lodash: zip', () => {
     })
 
     test('should group objects', () => {
-        expect(lodash.zip(['a', 'b'], [1, 2], [true, false])).toBe([['a', 1, true], ['b', 2, false]])
-        expect(lodash.zip(['a', 'b', 'c'], [1, 2], [true, false])).toBe([['a', 1, true], ['b', 2, false], ['c']])
+        expect(lodash.zip(['a', 'b'], [1, 2], [true, false])).toStrictEqual([['a', 1, true], ['b', 2, false]])
+        expect(lodash.zip(['a', 'b', 'c'], [1, 2], [true, false])).toStrictEqual([['a', 1, true], ['b', 2, false], ['c']])
     })
 })

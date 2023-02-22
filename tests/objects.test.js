@@ -107,25 +107,47 @@ describe('Lodash: pick', () => {
 
     test('should return object', () => {
         expect(lodash.pick()).toBeInstanceOf(Object)
+        expect(lodash.pick({'a': 1}, 'a')).toBeInstanceOf(Object)
     })
 
     test('should create new object composed of the picked object properties', () => {
-        expect(lodash.pick({ 'a': 1, 'b': '2', 'c': 3 }, ['a', 'b']))
-            .toBe({ 'a': 1, 'b': '2'})
-        expect(lodash.pick({ 'a': 1, 'b': '2', 'c': 3 }, ['a', 'c']))
-            .toBe({ 'a': 1, 'c': 3})
-        expect(lodash.pick({ 'a': 1, 'b': 2, 'c': 3 }, []))
+        expect(lodash.pick({'a': 1, 'b': '2', 'c': 3}, ['a', 'b']))
+            .toBe({'a': 1, 'b': '2'})
+        expect(lodash.pick({'a': 1, 'b': '2', 'c': 3}, ['a', 'c']))
+            .toBe({'a': 1, 'c': 3})
+        expect(lodash.pick({'a': 1, 'b': 2, 'c': 3}, []))
             .toBe({})
-        expect(lodash.pick({ 'a': 1, 'b': 2, 'c': 3 }, ['n']))
+        expect(lodash.pick({'a': 1, 'b': 2, 'c': 3}, ['n']))
             .toBe({})
-        expect(lodash.pick({ 'a': 1, 'b': 2, 'c': 3 }, 'a'))
-            .toBe({ 'a': 1})
+        expect(lodash.pick({'a': 1, 'b': 2, 'c': 3}, 'a'))
+            .toBe({'a': 1})
+    })
+})
+
+// pickBy
+describe('Lodash: pickBy', () => {
+    test('should be defined', () => {
+        expect(lodash.pickBy).toBeDefined()
+        expect(lodash.pickBy).not.toBeUndefined()
+    })
+
+    test('should return an object', () => {
+        expect(lodash.pickBy()).toBeInstanceOf(Object)
+        expect(lodash.pickBy({'a': 1}, (a) => a)).toBeInstanceOf(Object)
+    })
+
+    test('should create an object composed of the properties callback returns truthy for', () => {
+        expect(lodash.pickBy({'a': 1, 'b': '2', 'c': 3}, (a) => typeof a === 'number'))
+            .toBe({'a': 1, 'c': 3})
+        expect(lodash.pickBy({'a': 1, 'b': '2', 'c': 3}, (a) => typeof a !== 'number'))
+            .toBe({'b': '2'})
+        expect(lodash.pickBy({'a': 1, 'b': 2, 'c': 3}, (a) => a > 2))
+            .toBe({'c': 3})
+        expect(lodash.pickBy({'a': 1, 'b': '2', 'c': 3}, (a) => a < 0))
+            .toBe({})
     })
 })
 
 
 
-
-
-// pickBy
 // toPairs

@@ -62,6 +62,7 @@ describe('Lodash: drop', () => {
 
     test('should return an array', () => {
         expect(lodash.drop()).toBeInstanceOf(Array)
+        expect(lodash.drop([1,2])).toBeInstanceOf(Array)
     })
 
     test('default number of dropped elements is 1', () => {

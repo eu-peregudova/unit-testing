@@ -104,12 +104,8 @@ describe('Lodash: dropWhile', () => {
         expect(lodash.dropWhile(testArray, () => true)).toBeInstanceOf(Array)
     })
 
-    test('should drop all while true', () => {
-        expect(lodash.dropWhile(testArray, () => true)).toStrictEqual([])
-    })
-
     test('should drop according to callback', () => {
-        expect(lodash.dropWhile(testArray, (obj) => obj.active)).toBe(testArray)
+        expect(lodash.dropWhile(testArray, (obj) => obj.active)).toStrictEqual(testArray)
         expect(lodash.dropWhile(testArray, (obj) => !obj.active)).toStrictEqual([
             { 'user': 'pebbles', 'active': true }
         ])

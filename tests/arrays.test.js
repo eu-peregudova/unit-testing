@@ -211,6 +211,13 @@ describe('Lodash: find', () => {
     test('should work with strings', () => {
         expect(lodash.find('abcde', (a) => a === 'a')).toBe('a')
     })
+
+    test('should work with objects', () => {
+        let obj = {a: 1, b: 2, c: 3, d: 4, e: 5}
+        expect(lodash.find(obj, (v) => v > 1)).toStrictEqual(2)
+        expect(lodash.find(obj, (v) => v > 1, 3)).toStrictEqual(4)
+        expect(lodash.find(obj, (v) => v > 1, 2)).toStrictEqual(3)
+    })
 })
 
 describe('Lodash: includes', () => {

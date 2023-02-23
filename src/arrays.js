@@ -111,10 +111,31 @@ class LodashArray {
         return result
     }
 
+    /**
+     * Iterates over elements of collection, returning an array of
+     * all elements predicate returns truthy for.
+     *
+     * @param {Array, Object} collection
+     * @param {Function} [func]
+     * @return {Array}
+     *
+     * complexity = O(array.length)
+     */
+    filter(collection, func) {
+        let result = []
+        if (!func) {
+            func = (v) => v
+        }
+        for (let i in collection) {
+            if (func(collection[i])) {
+                result[result.length] = collection[i]
+            }
+        }
 
-    filter() {
-//collection
+        return result
     }
+
+
     find() {
 //collection
     }

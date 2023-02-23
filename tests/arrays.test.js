@@ -163,6 +163,15 @@ describe('Lodash: filter', () => {
         expect(lodash.filter(testArray, (a) => a > 4)).toStrictEqual([5, 6])
         expect(lodash.filter(testArray, (a) => a > 5)).toStrictEqual([6])
     })
+
+    test('should work with objects', () => {
+        let obj = {a: 1, b: 2, c: 3, d: 4}
+
+        expect(lodash.filter(obj, (a) => a > 1))
+            .toStrictEqual([2, 3, 4])
+        expect(lodash.filter(obj, (a) => a > 3))
+            .toStrictEqual([4])
+    })
 })
 
 describe('Lodash: find', () => {

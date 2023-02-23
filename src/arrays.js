@@ -92,9 +92,26 @@ class LodashArray {
         return result
     }
 
-    take() {
+    /**
+     * Creates a slice of array with n elements taken from the beginning.
+     *
+     * @param {Array} array
+     * @param {Number} n
+     * @return {Array}
+     *
+     * complexity = O(array.length)
+     */
+    take(array, n = 1) {
+        let result = []
 
+        for (let i = 0; i < n && i < array.length; i++) {
+            result[result.length] = array[i]
+        }
+
+        return result
     }
+
+
     filter() {
 //collection
     }

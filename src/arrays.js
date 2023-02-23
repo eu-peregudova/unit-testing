@@ -67,9 +67,31 @@ class LodashArray {
         return result;
     }
 
-    dropWhile() {
-
+    /**
+     * Creates a slice of array excluding elements dropped from the beginning.
+     * Elements are dropped until predicate returns falsey.
+     *
+     * @param {Array} array
+     * @param {Function} func
+     * @return {Array}
+     *
+     * complexity = O(array.length)
+     */
+    dropWhile(array, func) {
+        const result = []
+        let index = array.length - 1
+        for (let i in array) {
+            if (!func(array[i])) {
+                index = i
+                break
+            }
+        }
+        for (let i = index; i < array.length; i++) {
+            result[result.length] = array[i]
+        }
+        return result
     }
+
     take() {
 
     }

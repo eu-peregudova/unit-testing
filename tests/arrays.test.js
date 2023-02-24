@@ -195,11 +195,11 @@ describe('Lodash: find', () => {
     })
 
     test('should return only first find', () => {
-        expect(lodash.find([1, 2, 4], (a) => a < 0)).toBe(1)
+        expect(lodash.find([1, 2, 4], (a) => a > 0)).toBe(1)
     })
 
     test('should accept third parameter (index to search from)', () => {
-        expect(lodash.find([1, 2, 4], (a) => a < 0, 1)).toBe(2)
+        expect(lodash.find([1, 2, 4], (a) => a > 0, 1)).toBe(2)
     })
 
     test('should work with arrays of objects', () => {

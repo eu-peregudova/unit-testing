@@ -135,10 +135,39 @@ class LodashArray {
         return result
     }
 
+    /**
+     * Iterates over elements of collection, returning the
+     * first element predicate returns truthy for.
+     *
+     * @param {Array, Object} collection
+     * @param {Function} [func]
+     * @param {Number} [n]
+     * @return {Array}
+     *
+     * complexity = O(2 * array.length)
+     */
+    find(collection, func, n = 0) {
+        if (!func) {
+            return collection[0]
+        }
 
-    find() {
-//collection
+        let result
+        let array = []
+
+        for (let i in collection) {
+            array[array.length] = collection[i]
+        }
+
+        for (let i = n; i < array.length; i++) {
+            if (func(array[i])) {
+                result = array[i]
+                break
+            }
+        }
+
+        return result
     }
+
     includes() {
 //collection
     }

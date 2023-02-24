@@ -227,8 +227,8 @@ describe('Lodash: includes', () => {
     })
 
     test('should return Boolean', () => {
-        expect(lodash.includes([1, 2, 3], 1)).toBeInstanceOf(Boolean)
-        expect(lodash.includes([1, 2, 3], 5)).toBeInstanceOf(Boolean)
+        expect(typeof lodash.includes([1, 2, 3], 1) === 'boolean').toBeTruthy()
+        expect(typeof lodash.includes([1, 2, 3], 5) === 'boolean').toBeTruthy()
     })
 
     test('should accept third parameter (index to search from)', () => {

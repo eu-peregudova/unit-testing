@@ -168,9 +168,44 @@ class LodashArray {
         return result
     }
 
-    includes() {
-//collection
+    /**
+     * Checks if value is in collection. If collection is a string,
+     * it's checked for a substring of value, otherwise SameValueZero
+     * is used for equality comparisons.
+     *
+     * If fromIndex is negative,
+     * it's used as the offset from the end of collection.
+     *
+     * @param {String, Array, Object} collection
+     * @param {*} value
+     * @param {Number} [fromIndex]
+     * @return {Boolean}
+     *
+     * complexity = O(array.length ** 2)
+     */
+    includes(collection, value, fromIndex = 0) {
+        let answer = false
+        const len = collection.length
+        if (typeof collection === 'string') {
+            for (let i = fromIndex >= 0 ? fromIndex : len + fromIndex; i < len; i++) {
+                if (collection[i] === value[0]) {
+                    for (let j = 0; j < value.length; j++) {
+                        answer = collection[i + j] === value[j];
+                    }
+                }
+            }
+        } else {
+            let array = []
+            for (let i in collection) {
+                array[array.length] = collection[i]
+            }
+            for (let i = fromIndex >= 0 ? fromIndex : array.length + fromIndex; i < array.length; i++) {
+                if (array[i] === value) answer = true
+            }
+        }
+        return answer
     }
+
     map() {
 //collection
     }

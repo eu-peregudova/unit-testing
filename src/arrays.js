@@ -183,23 +183,26 @@ class LodashArray {
      *
      * complexity = O(array.length ** 2)
      */
-    includes(collection, value, fromIndex= 0) {
+    includes(collection, value, fromIndex = 0) {
         function includesSub(source) {
             if (value.length > collection.length) {
                 return false
             }
+            if (value === '') {
+                return true
+            }
 
-            let j = 0
-            const padding = fromIndex < 0 ? source.length : 0
-            for (let i = fromIndex + padding; i < source.length; i++) {
-                if (j === value.length) return true
-                if (source[i] === value[j]) {
-                    j++
-                } else {
-                    j = 0
+            let ans = false;
+            let x = 0;
+            for (let i = fromIndex; i < source.length; i++) {
+                if (source[i] === value[0]) {
+                    for (let n = 0; n < value.length; n++) {
+                        if (source[i + n] === value[n]) x++
+                        if (x === value.length) ans = true
+                    }
                 }
             }
-            return false
+            return ans;
         }
 
         function includesArray(source) {

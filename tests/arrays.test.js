@@ -246,6 +246,7 @@ describe('Lodash: includes', () => {
     test('should work with strings', () => {
         expect(lodash.includes('abcde', 'bc')).toBe(true)
         expect(lodash.includes('hello', 'bc')).toBe(false)
+        expect(lodash.includes('hello', 'llo')).toBe(true)
         expect(lodash.includes('abcde', '')).toBe(true)
     })
 
@@ -286,6 +287,12 @@ describe('Lodash: map', () => {
     test('should work with strings', () => {
         const string = 'abc'
         expect(lodash.map(string, (a) => `${a}b`)).toStrictEqual(['ab', 'bb', 'cb'])
+    })
+
+    test('should work with objects', () => {
+        const object = {a: 1, b: 2, c: 3}
+        expect(lodash.map(object, (a) => a ** 2)).toStrictEqual([1, 4, 9])
+        expect(lodash.map(object, (a) => a + '1')).toStrictEqual(['11', '21', '31'])
     })
 })
 

@@ -246,7 +246,7 @@ describe('Lodash: includes', () => {
     test('should work with strings', () => {
         expect(lodash.includes('abcde', 'bc')).toBe(true)
         expect(lodash.includes('hello', 'bc')).toBe(false)
-        expect(lodash.includes('abcde', '')).toBe(false)
+        expect(lodash.includes('abcde', '')).toBe(true)
     })
 
     test('should work with objects', () => {

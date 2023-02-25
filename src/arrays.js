@@ -228,8 +228,23 @@ class LodashArray {
         return includesArray(collection)
     }
 
-    map() {
-//collection
+    /**
+     * Creates an array of values by running each element in collection
+     * through function.
+     *
+     * @param {Array, Object, String} collection
+     * @param {Function} func
+     *
+     * @return {Array}
+     *
+     * complexity = O(collection.length)
+     */
+    map(collection, func) {
+        let answer = [];
+        for (let i in collection) {
+            answer[answer.length] = func(collection[i])
+        }
+        return answer;
     }
 
     zip() {

@@ -181,7 +181,7 @@ class LodashArray {
      * @param {Number} [fromIndex]
      * @return {Boolean}
      *
-     * complexity = O(array.length ** 2)
+     * complexity = O(array.length ** value.length)
      */
     includes(collection, value, fromIndex = 0) {
         function includesSub(source) {
@@ -247,8 +247,40 @@ class LodashArray {
         return answer;
     }
 
-    zip() {
+    /**
+     * Creates an array of grouped elements, the first of which contains
+     * the first elements of the given arrays, the second of which
+     * contains the second elements of the given arrays, and so on.
+     *
+     * @param {Array} arrays
+     *
+     * @return {Array}
+     *
+     * complexity = O(arrays.length * max(array.length))
+     */
 
+    zip(...arrays) {
+        let length = 0;
+        for (let i of arrays) {
+            length = Math.max(length, i.length)
+        }
+
+        let answer = []
+        for (let i = 0; i < length; i++) {
+            answer[answer.length] = []
+        }
+
+        for (let i = 0; i < arrays.length; i++) {
+            for (let j = 0; j < length; j++) {
+                if (arrays[i][j] === undefined) {
+                    answer[j][answer[j].length] = null
+                } else {
+                    answer[j][answer[j].length] = arrays[i][j]
+                }
+            }
+        }
+
+        return answer
     }
 }
 

@@ -303,6 +303,6 @@ describe('Lodash: zip', () => {
 
     test('should group objects', () => {
         expect(lodash.zip(['a', 'b'], [1, 2], [true, false])).toStrictEqual([['a', 1, true], ['b', 2, false]])
-        expect(lodash.zip(['a', 'b', 'c'], [1, 2], [true, false])).toStrictEqual([['a', 1, true], ['b', 2, false], ['c']])
+        expect(lodash.zip(['a', 'b', 'c'], [1, 2], [true, false])).toStrictEqual([['a', 1, true], ['b', 2, false], ['c', null, null]])
     })
 })

@@ -279,11 +279,6 @@ describe('Lodash: map', () => {
         expect(lodash.map(testArray, (num) => num ** 3)).toStrictEqual(testArray.map((num) => num ** 3))
     })
 
-    test('should work with an array of objects', () => {
-        const arr = [{ 'a': 20 }, { 'b': 40 }]
-        expect(lodash.map(arr, (u) => u / 10)).toStrictEqual([2, 4])
-    })
-
     test('should work with strings', () => {
         const string = 'abc'
         expect(lodash.map(string, (a) => `${a}b`)).toStrictEqual(['ab', 'bb', 'cb'])

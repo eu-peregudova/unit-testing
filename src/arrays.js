@@ -177,38 +177,58 @@ class LodashArray {
      * it's used as the offset from the end of collection.
      *
      * @param {String, Array, Object} collection
-     * @param {*} value
+     * @param {*} [value]
      * @param {Number} [fromIndex]
      * @return {Boolean}
      *
      * complexity = O(array.length ** 2)
      */
-    includes(collection, value, fromIndex = 0) {
-        let answer = false
-        const len = collection.length
-        if (typeof collection === 'string') {
-            for (let i = fromIndex >= 0 ? fromIndex : len + fromIndex; i < len; i++) {
-                if (collection[i] === value[0]) {
-                    for (let j = 0; j < value.length; j++) {
-                        answer = collection[i + j] === value[j];
-                    }
+    includes(collection, value, fromIndex= 0) {
+        function includesSub(source) {
+            if (value.length > collection.length) {
+                return false
+            }
+
+            let j = 0
+            const padding = fromIndex < 0 ? source.length : 0
+            for (let i = fromIndex + padding; i < source.length; i++) {
+                if (j === value.length) return true
+                if (source[i] === value[j]) {
+                    j++
+                } else {
+                    j = 0
                 }
             }
-        } else {
-            let array = []
+            return false
+        }
+
+        function includesArray(source) {
+            const padding = fromIndex < 0 ? source.length : 0
+            for (let i = fromIndex + padding; i < source.length; i++) {
+                if (source[i] === value) return true
+            }
+            return false
+        }
+
+        if (typeof collection === 'string') {
+            return includesSub(collection)
+        }
+
+        if (!(collection instanceof Array)) {
+            const array = []
             for (let i in collection) {
                 array[array.length] = collection[i]
             }
-            for (let i = fromIndex >= 0 ? fromIndex : array.length + fromIndex; i < array.length; i++) {
-                if (array[i] === value) answer = true
-            }
+            return includesArray(array)
         }
-        return answer
+
+        return includesArray(collection)
     }
 
     map() {
 //collection
     }
+
     zip() {
 
     }

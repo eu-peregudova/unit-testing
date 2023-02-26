@@ -76,8 +76,24 @@ class LodashObject {
         return result
     }
 
-    pickBy() {
+    /**
+     * Creates an object composed of the
+     * object properties function returns truthy for.
+     *
+     *  @param {Object} object
+     *  @param {Function} func
+     *
+     *  @return {Object}
+     */
 
+    pickBy(object, func) {
+        let result = {}
+        for (let key in object) {
+            if (func(object[key])) {
+                result[key] = object[key]
+            }
+        }
+        return result
     }
 
     toPairs() {

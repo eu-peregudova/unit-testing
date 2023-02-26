@@ -136,6 +136,10 @@ describe('Lodash: take', () => {
         expect(lodash.take(testArray, 4)).toStrictEqual([1, 2, 3, 4])
         expect(lodash.take(testArray, 10)).toStrictEqual([1, 2, 3, 4, 5, 6, 7])
     })
+
+    test('should have a default n', () => {
+        expect(lodash.take(testArray)).toStrictEqual([1])
+    })
 })
 
 describe('Lodash: filter', () => {

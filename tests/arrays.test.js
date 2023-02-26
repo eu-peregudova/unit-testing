@@ -222,6 +222,11 @@ describe('Lodash: find', () => {
         expect(lodash.find(obj, (v) => v > 1, 3)).toStrictEqual(4)
         expect(lodash.find(obj, (v) => v > 1, 2)).toStrictEqual(3)
     })
+
+    test('should return first element without function provided', () => {
+        expect(lodash.find('abcde')).toBe('a')
+        expect(lodash.find([1, 2])).toBe(1)
+    })
 })
 
 describe('Lodash: includes', () => {

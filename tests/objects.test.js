@@ -43,6 +43,22 @@ describe('Lodash: merge', () => {
             "a": {"b": [1, 2, 3], "c": [4, 5]}
         })
     })
+
+    test('should skip undefined/nulls in sources', () => {
+        let object, source;
+
+        object = {'a': {'b': [1, 2, 3]}}
+        source = {'a': undefined}
+        expect(lodash.merge(object, source)).toStrictEqual({
+            'a': {'b': [1, 2, 3]}
+        })
+
+        object = {'a': {'b': [1, 2, 3]}}
+        source = {'a': {'b': null}}
+        expect(lodash.merge(object, source)).toStrictEqual({
+            'a': {'b': [1, 2, 3]}
+        })
+    })
 })
 
 // omit

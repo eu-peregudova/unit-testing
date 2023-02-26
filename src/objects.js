@@ -33,8 +33,25 @@ class LodashObject {
         return result
     }
 
-    omitBy() {
+    /**
+     * The opposite of _.pick; this method creates an object composed
+     * of the own and inherited enumerable string keyed properties of
+     * object that predicate doesn't return truthy for.
+     *
+     *  @param {Object} object
+     *  @param {Function} func
+     *
+     *  @return {Object}
+     */
 
+    omitBy(object, func) {
+        let result = {}
+        for (let key in object) {
+            if (!func(object[key])) {
+                result[key] = object[key]
+            }
+        }
+        return result
     }
 
     pick() {

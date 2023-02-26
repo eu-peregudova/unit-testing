@@ -1,8 +1,53 @@
 LodashArray = require('../src/arrays.js')
 let _ = new LodashArray
 
+
 class LodashObject {
-    merge() {
+    /**
+     * This method is recursively merges own and inherited
+     * enumerable string keyed properties
+     * of source objects into the destination object.
+     *
+     * Source properties that resolve to undefined are skipped
+     * if a destination value exists.
+     *
+     * Array and plain object properties are merged recursively.
+     * Other objects and value types are overridden by assignment.
+     * Source objects are applied from left to right.
+     *
+     * Subsequent sources overwrite property assignments
+     * of previous sources.
+     *
+     * This method mutates object.
+     *
+     * @param {Object} destObject
+     * @param {Object} sources
+     *
+     * @return {Object}
+     */
+    merge(destObject, ...sources) {
+        const replace = (val, newVal) => {
+            if (val instanceof Array && newVal instanceof Array) {
+                let ans = val
+                for (let j = 0; j < newVal.length; j++) {
+                    ans[j] = replace(val[j], newVal[j])
+                }
+                return ans
+            } else if (val instanceof Object && newVal instanceof Object) {
+                return this.merge(val, newVal)
+            }
+            return newVal
+        }
+
+        for (let source of sources) {
+            for (let i in source) {
+                if (source[i] == null)
+                    continue
+                destObject[i] = replace(destObject[i], source[i])
+            }
+        }
+
+        return destObject
 
     }
 

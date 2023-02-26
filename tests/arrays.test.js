@@ -255,6 +255,7 @@ describe('Lodash: includes', () => {
     test('should work with strings', () => {
         expect(lodash.includes('abcde', 'bc')).toBe(true)
         expect(lodash.includes('hello', 'bc')).toBe(false)
+        expect(lodash.includes('hello', 'abcdefga')).toBe(false)
         expect(lodash.includes('hello', 'llo')).toBe(true)
         expect(lodash.includes('abcde', '')).toBe(true)
     })
@@ -263,6 +264,11 @@ describe('Lodash: includes', () => {
         expect(lodash.includes({ 'a': 1, 'b': 2 }, 1)).toBe(true)
         expect(lodash.includes({ 'a': 1, 'b': 2 }, 'a')).toBe(false)
         expect(lodash.includes({ 'a': 1, 'b': 2 })).toBe(false)
+    })
+
+    test('should accept negative fromIndex', () => {
+        expect(lodash.includes([1, 'a', 'b', 3, 1], 'a', -2)).toBe(false)
+        expect(lodash.includes('12345', '5', -1)).toBe(true)
     })
 })
 

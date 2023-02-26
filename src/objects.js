@@ -15,7 +15,6 @@ class LodashObject {
      *
      *  @return {Object}
      */
-
     omit(object, paths) {
         if (typeof paths === 'string') {
             const a = paths
@@ -41,7 +40,6 @@ class LodashObject {
      *
      *  @return {Object}
      */
-
     omitBy(object, func) {
         let result = {}
         for (let key in object) {
@@ -60,7 +58,6 @@ class LodashObject {
      *
      *  @return {Object}
      */
-
     pick(object, paths) {
         if (typeof paths === 'string') {
             const a = paths
@@ -85,7 +82,6 @@ class LodashObject {
      *
      *  @return {Object}
      */
-
     pickBy(object, func) {
         let result = {}
         for (let key in object) {
@@ -96,8 +92,47 @@ class LodashObject {
         return result
     }
 
-    toPairs() {
+    /**
+     * Creates an array of own enumerable string keyed-value pairs for object.
+     * If object is a map or set, its entries are returned.
+     *
+     * @param {Object} object
+     *
+     * @return {Array}
+     */
 
+    toPairs(object) {
+        let obj = []
+        let result = []
+
+        if (!object) {
+            return result
+        }
+
+        if (object instanceof Set) {
+            for (let i of object) {
+                let a = []
+                a[0] = i
+                a[1] = i
+                result[result.length] = a
+            }
+        } else if (object instanceof Map) {
+            for (let i of object) {
+                result[result.length] = i
+            }
+        } else {
+            obj = JSON.parse(JSON.stringify(object))
+        }
+
+        for (let key in obj) {
+            let a = []
+            a[0] = key
+            a[1] = obj[key]
+
+            result[result.length] = a
+        }
+
+        return result
     }
 }
 

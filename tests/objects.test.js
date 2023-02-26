@@ -21,7 +21,7 @@ describe('Lodash: merge', () => {
             'a': [{ 'c': 3 }, { 'e': 5 }]
         }
         lodash.merge(object, source)
-        expect(object).toBe({
+        expect(object).toStrictEqual({
             'a': [{ 'b': 2, 'c': 3 }, { 'd': 4, 'e': 5 }]
         })
     })
@@ -31,19 +31,19 @@ describe('Lodash: merge', () => {
 
         object = {'a': 1}
         source = {'a': 0}
-        expect(lodash.merge(object, source)).toBe({'a': 0})
+        expect(lodash.merge(object, source)).toStrictEqual({'a': 0})
 
         object = {'a': [1, 2, 3]}
         source = {'a': 'b'}
-        expect(lodash.merge(object, source)).toBe({'a': 'b'})
+        expect(lodash.merge(object, source)).toStrictEqual({'a': 'b'})
 
         object = {'a': [1, 2, 3]};
         source = {'a': [4, 5]};
-        expect(lodash.merge(object, source)).toBe({'a': [4, 5, 3]})
+        expect(lodash.merge(object, source)).toStrictEqual({'a': [4, 5, 3]})
 
         object = {'a': {'b': [1, 2, 3]}}
         source = {'a': {'c': [4, 5]}}
-        expect(lodash.merge(object, source)).toBe({
+        expect(lodash.merge(object, source)).toStrictEqual({
             "a": {"b": [1, 2, 3], "c": [4, 5]}
         })
     })
@@ -61,14 +61,14 @@ describe('Lodash: omit', () => {
     })
 
     test('should omit provided properties from object', () => {
-        expect(lodash.omit({'a': 1, 'b': '2', 'c': 3}, ['a', 'c'])).toBe({'b': '2'})
-        expect(lodash.omit({'a': 2, 'b': [1, 2, 3]}, 'b')).toBe({'a': 2})
-        expect(lodash.omit({'a': 2, 'b': [1, 2, 3]}, 'none')).toBe({'a': 2, 'b': [1, 2, 3]})
+        expect(lodash.omit({'a': 1, 'b': '2', 'c': 3}, ['a', 'c'])).toStrictEqual({'b': '2'})
+        expect(lodash.omit({'a': 2, 'b': [1, 2, 3]}, 'b')).toStrictEqual({'a': 2})
+        expect(lodash.omit({'a': 2, 'b': [1, 2, 3]}, 'none')).toStrictEqual({'a': 2, 'b': [1, 2, 3]})
 
     })
 
     test('should not omit nested properties', () => {
-        expect(lodash.omit({'a': {'b': [1, 2, 3]}}, ['b'])).toBe({'a': {'b': [1, 2, 3]}})
+        expect(lodash.omit({'a': {'b': [1, 2, 3]}}, ['b'])).toStrictEqual({'a': {'b': [1, 2, 3]}})
     })
 })
 
@@ -86,15 +86,15 @@ describe('Lodash: omitBy', () => {
 
     test('should leave values for which callback doesn\'t return truthy', () => {
         expect(lodash.omitBy({'a': 1, 'b': '2', 'c': 3}, (a) => typeof(a) === 'number'))
-            .toBe({'b': '2'})
+            .toStrictEqual({'b': '2'})
         expect(lodash.omitBy({'a': 1, 'b': '2', 'c': 3}, (a) => typeof(a) === 'string'))
-            .toBe({'a': 1, 'c': 3})
+            .toStrictEqual({'a': 1, 'c': 3})
         expect(lodash.omitBy({'a': 1, 'b': 2, 'c': 3}, (a) => a > 2))
-            .toBe({'a': 1, 'b': 2})
+            .toStrictEqual({'a': 1, 'b': 2})
         expect(lodash.omitBy({'a': 1, 'b': 2, 'c': 3}, (a) => a < 0))
-            .toBe({'a': 1, 'b': 2, 'c': 3})
+            .toStrictEqual({'a': 1, 'b': 2, 'c': 3})
         expect(lodash.omitBy({'a': 1, 'b': 2, 'c': 3}, (a) => a > 0))
-            .toBe({})
+            .toStrictEqual({})
     })
 })
 
@@ -112,15 +112,15 @@ describe('Lodash: pick', () => {
 
     test('should create new object composed of the picked object properties', () => {
         expect(lodash.pick({'a': 1, 'b': '2', 'c': 3}, ['a', 'b']))
-            .toBe({'a': 1, 'b': '2'})
+            .toStrictEqual({'a': 1, 'b': '2'})
         expect(lodash.pick({'a': 1, 'b': '2', 'c': 3}, ['a', 'c']))
-            .toBe({'a': 1, 'c': 3})
+            .toStrictEqual({'a': 1, 'c': 3})
         expect(lodash.pick({'a': 1, 'b': 2, 'c': 3}, []))
-            .toBe({})
+            .toStrictEqual({})
         expect(lodash.pick({'a': 1, 'b': 2, 'c': 3}, ['n']))
-            .toBe({})
+            .toStrictEqual({})
         expect(lodash.pick({'a': 1, 'b': 2, 'c': 3}, 'a'))
-            .toBe({'a': 1})
+            .toStrictEqual({'a': 1})
     })
 })
 
@@ -138,13 +138,13 @@ describe('Lodash: pickBy', () => {
 
     test('should create an object composed of the properties callback returns truthy for', () => {
         expect(lodash.pickBy({'a': 1, 'b': '2', 'c': 3}, (a) => typeof a === 'number'))
-            .toBe({'a': 1, 'c': 3})
+            .toStrictEqual({'a': 1, 'c': 3})
         expect(lodash.pickBy({'a': 1, 'b': '2', 'c': 3}, (a) => typeof a !== 'number'))
-            .toBe({'b': '2'})
+            .toStrictEqual({'b': '2'})
         expect(lodash.pickBy({'a': 1, 'b': 2, 'c': 3}, (a) => a > 2))
-            .toBe({'c': 3})
+            .toStrictEqual({'c': 3})
         expect(lodash.pickBy({'a': 1, 'b': '2', 'c': 3}, (a) => a < 0))
-            .toBe({})
+            .toStrictEqual({})
     })
 })
 
@@ -162,29 +162,29 @@ describe('Lodash: toPairs', () => {
 
     test('should not deconstruct nested objects', () => {
         expect(lodash.toPairs({'a': 1, 'b': {'c': 2}}))
-            .toBe([['a', 1],['b', {'c': 2}]])
+            .toStrictEqual([['a', 1],['b', {'c': 2}]])
     })
 
     test('should create an array of arrays with [key, value] pairs, ' +
         'If object is a map or set, its entries are returned.', () => {
         expect(lodash.toPairs({'a': 1, 'b': 2}))
-            .toBe([['a', 1], ['b', 2]])
+            .toStrictEqual([['a', 1], ['b', 2]])
 
         let test = new Set([1, 2, 3])
         expect(lodash.toPairs(test))
-            .toBe([[1, 1], [2, 2], [3, 3]])
+            .toStrictEqual([[1, 1], [2, 2], [3, 3]])
 
         test = new Map()
         test.set('a', 1)
         expect(lodash.toPairs(test))
-            .toBe([['a', 1]])
+            .toStrictEqual([['a', 1]])
 
         test.set({'b': 2}, 3)
         expect(lodash.toPairs(test))
-            .toBe([['a', 1], [{'b': 2}, 3]])
+            .toStrictEqual([['a', 1], [{'b': 2}, 3]])
 
         test = [1, 2, 3]
         expect(lodash.toPairs(test))
-            .toBe([['0', 1], ['1', 2], ['2', 3]])
+            .toStrictEqual([['0', 1], ['1', 2], ['2', 3]])
     })
 })

@@ -25,8 +25,6 @@ class LodashObject {
         let result = {}
         for (let key in object) {
             if (!_.includes(paths, key)) {
-                console.log(paths)
-                console.log(key, _.includes(paths, key))
                 result[key] = object[key]
             }
         }
@@ -54,8 +52,28 @@ class LodashObject {
         return result
     }
 
-    pick() {
+    /**
+     * Creates an object composed of the picked object properties.
+     *
+     *  @param {Object} object
+     *  @param {String, Array} paths
+     *
+     *  @return {Object}
+     */
 
+    pick(object, paths) {
+        if (typeof paths === 'string') {
+            const a = paths
+            paths = []
+            paths[0] = a
+        }
+        let result = {}
+        for (let key in object) {
+            if (_.includes(paths, key)) {
+                result[key] = object[key]
+            }
+        }
+        return result
     }
 
     pickBy() {

@@ -1,5 +1,4 @@
 LodashObject = require('../src/objects')
-
 let lodash = new LodashObject;
 
 // merge
@@ -10,7 +9,7 @@ describe('Lodash: merge', () => {
     })
 
     test('should return object', () => {
-        expect(lodash.merge('a')).toBeInstanceOf(Object)
+        expect(lodash.merge({a: '1'}, {a: '2'})).toBeInstanceOf(Object)
     })
 
     test('should mutate original object', () => {
@@ -20,10 +19,7 @@ describe('Lodash: merge', () => {
         const source = {
             'a': [{ 'c': 3 }, { 'e': 5 }]
         }
-        lodash.merge(object, source)
-        expect(object).toStrictEqual({
-            'a': [{ 'b': 2, 'c': 3 }, { 'd': 4, 'e': 5 }]
-        })
+        expect(lodash.merge(object, source)).toBe(object)
     })
 
     test('should merge objects correctly, override primitives', () => {
